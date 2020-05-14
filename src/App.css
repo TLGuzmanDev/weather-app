@@ -1,24 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 #app {
-  width: 400px;
+  width: 350px;
   margin: 50px auto;
   font-family: 'Open Sans', sans-serif;
 }
 
 #form {
+  display: flex;
   margin-bottom: 15px;
+  border: 2px solid black;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 #form input[type='text'] {
-  width: 400px;
-  font-size: 15px;
+  width: 315px;
   padding: 1em;
+  font-size: 15px;
+  border: none;
 }
 
-form input[type='submit'] {
-  display: none;
+#form button {
+  cursor: pointer;
+  padding: 0 15px;
+  background: black;
+  border: none;
+  font-size: 25px;
+  color: white;
+}
+
+#error p {
+  margin: -15px 0 15px 3px;
+  color: white;
 }
 
 #display {

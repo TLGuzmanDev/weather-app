@@ -8,6 +8,19 @@ import { faCloud } from '@fortawesome/free-solid-svg-icons';
 import { faCloudShowersHeavy } from '@fortawesome/free-solid-svg-icons';
 import { faCloudRain } from '@fortawesome/free-solid-svg-icons';
 import { faSnowflake } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
+const Error = (props) => {
+  if (props.message) {
+    return (
+      <div id="error">
+        <p>{`ERROR: ${props.message.toUpperCase()}`}</p>
+      </div>
+    );
+  } else {
+    return <div id="error"></div>;
+  }
+};
 
 const Day = () => {
   const days = [
@@ -99,7 +112,9 @@ const Input = (props) => {
         name="location-input"
         placeholder="LOCATION..."
       ></input>
-      <input type="submit" value="Submit" />
+      <button type="submit">
+        <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
+      </button>
     </form>
   );
 };
@@ -113,6 +128,7 @@ class App extends React.Component {
       feels_like: null,
       main: null,
       description: null,
+      error: null,
     };
     this.fetchData = this.fetchData.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -120,9 +136,7 @@ class App extends React.Component {
 
   async fetchData(name) {
     const data = await fetchWeatherData(name);
-    if (data.message) {
-      console.log(`Error: ${data.cod} ${data.message}`);
-    } else {
+    if (data.cod === 200) {
       const {
         name,
         main: { feels_like, temp },
@@ -136,14 +150,20 @@ class App extends React.Component {
         feels_like,
         main,
         description,
+        error: null,
       });
+    } else {
+      console.log(`Error: ${data.cod} ${data.message}`);
+      this.setState({ error: data.message });
     }
   }
 
   handleSubmit(event) {
     const input = event.target.querySelector('#location-input');
-    this.fetchData(input.value);
-    event.target.reset();
+    if (input.value) {
+      this.fetchData(input.value);
+      event.target.reset();
+    }
     event.preventDefault();
   }
 
@@ -151,6 +171,7 @@ class App extends React.Component {
     return (
       <div id="app">
         <Input onSubmit={this.handleSubmit} />
+        <Error message={this.state.error} />
         <Display
           city={this.state.city}
           temp={this.state.temp}

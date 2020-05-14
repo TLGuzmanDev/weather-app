@@ -7,7 +7,6 @@ async function fetchWeatherData(name) {
   try {
     const response = await fetch(url, { mode: 'cors' });
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.log(`Error: ${error.message}`);
