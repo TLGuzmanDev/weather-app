@@ -1,1 +1,17 @@
+#display {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(5, 1fr);
+  justify-items: center;
+  align-items: center;
+  width: 500px;
+  background-color: gray;
+}
 
+#display h1 {
+  margin: 0;
+}
+
+form input[type='submit'] {
+  display: none;
+}
