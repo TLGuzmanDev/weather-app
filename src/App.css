@@ -22,11 +22,9 @@ form input[type='submit'] {
 }
 
 #display {
-  height: 500px;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 50px 50px 100px 50px 50px;
-  justify-items: center;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   background-color: black;
   color: white;
@@ -35,4 +33,27 @@ form input[type='submit'] {
 
 #display h1 {
   margin: 0;
+  font-size: 1em;
+}
+
+#city {
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+#weather {
+  font-size: 20px;
+}
+
+#symbol {
+  font-size: 100px;
+}
+
+#temp {
+  font-size: 50px;
+}
+
+#date {
+  font-size: 20px;
+  margin-top: 15px;
 }

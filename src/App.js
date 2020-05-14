@@ -27,20 +27,20 @@ const Day = () => {
 const Symbol = (props) => {
   switch (props.main) {
     case 'Thunderstorm':
-      return <FontAwesomeIcon icon={faCloudShowersHeavy} size="6x" />;
+      return <FontAwesomeIcon icon={faCloudShowersHeavy} />;
     case 'Drizzle':
     case 'Rain':
-      return <FontAwesomeIcon icon={faCloudRain} size="6x" />;
+      return <FontAwesomeIcon icon={faCloudRain} />;
     case 'Snow':
-      return <FontAwesomeIcon icon={faSnowflake} size="6x" />;
+      return <FontAwesomeIcon icon={faSnowflake} />;
     case 'Tornado':
-      return <FontAwesomeIcon icon={faWind} size="6x" />;
+      return <FontAwesomeIcon icon={faWind} />;
     case 'Clear':
-      return <FontAwesomeIcon icon={faSun} size="6x" />;
+      return <FontAwesomeIcon icon={faSun} />;
     case 'Clouds':
-      return <FontAwesomeIcon icon={faCloud} size="6x" />;
+      return <FontAwesomeIcon icon={faCloud} />;
     default:
-      return <FontAwesomeIcon icon={faSun} size="6x" />;
+      return <FontAwesomeIcon icon={faSun} />;
   }
 };
 
@@ -48,7 +48,7 @@ const Description = (props) => {
   if (props.description) {
     return <h1>{props.description.toUpperCase()}</h1>;
   } else {
-    return <h1>{'DESCRIPTION'}</h1>;
+    return <h1>{'WEATHER'}</h1>;
   }
 };
 
@@ -56,7 +56,7 @@ const Temp = (props) => {
   if (props.temp) {
     return <h1>{`${Math.round(props.temp)}\xB0`}</h1>;
   } else {
-    return <h1>{'TEMPERATURE'}</h1>;
+    return <h1>{'0\xB0'}</h1>;
   }
 };
 
@@ -71,11 +71,21 @@ const City = (props) => {
 const Display = (props) => {
   return (
     <div id="display">
-      <City city={props.city} />
-      <Description description={props.description} />
-      <Symbol main={props.main} />
-      <Temp temp={props.temp} />
-      <Day />
+      <div id="city">
+        <City city={props.city} />
+      </div>
+      <div id="weather">
+        <Description description={props.description} />
+      </div>
+      <div id="symbol">
+        <Symbol main={props.main} />
+      </div>
+      <div id="temp">
+        <Temp temp={props.temp} />
+      </div>
+      <div id="date">
+        <Day />
+      </div>
     </div>
   );
 };
