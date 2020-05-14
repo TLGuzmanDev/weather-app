@@ -71,8 +71,8 @@ const City = (props) => {
 const Display = (props) => {
   return (
     <div id="display">
-      <Description description={props.description} />
       <City city={props.city} />
+      <Description description={props.description} />
       <Symbol main={props.main} />
       <Temp temp={props.temp} />
       <Day />
@@ -82,12 +82,12 @@ const Display = (props) => {
 
 const Input = (props) => {
   return (
-    <form action="#" onSubmit={props.onSubmit}>
+    <form id="form" action="#" onSubmit={props.onSubmit}>
       <input
         type="text"
         id="location-input"
         name="location-input"
-        placeholder="location..."
+        placeholder="LOCATION..."
       ></input>
       <input type="submit" value="Submit" />
     </form>
