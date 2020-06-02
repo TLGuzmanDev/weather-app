@@ -1,6 +1,7 @@
-import config from './config';
-const fetch = require('node-fetch');
+import config from '../config';
 const KEY = config.API_KEY;
+
+const fetch = require('node-fetch');
 
 export default async function fetchWeatherData(name) {
   let url = `http://api.openweathermap.org/data/2.5/weather?q=${name}&units=imperial&appid=${KEY}`;
