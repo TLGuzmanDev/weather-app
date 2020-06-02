@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Error = (props) => {
-  if (props.message) {
+const Error = ({ message }) => {
+  if (message) {
     return (
       <div id="error">
-        <p>{`ERROR: ${props.message.toUpperCase()}`}</p>
+        <p>{`ERROR: ${message.toUpperCase()}`}</p>
       </div>
     );
   } else {

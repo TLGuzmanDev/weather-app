@@ -24,70 +24,86 @@ const Day = () => {
   return <h1>{days[day].toUpperCase()}</h1>;
 };
 
-const Symbol = (props) => {
-  switch (props.main) {
+const Symbol = ({ main }) => {
+  let symbol = '';
+  switch (main) {
     case 'Thunderstorm':
-      return <FontAwesomeIcon icon={faCloudShowersHeavy} />;
+      symbol = faCloudShowersHeavy;
+      break;
     case 'Drizzle':
     case 'Rain':
-      return <FontAwesomeIcon icon={faCloudRain} />;
+      symbol = faCloudRain;
+      break;
     case 'Snow':
-      return <FontAwesomeIcon icon={faSnowflake} />;
+      symbol = faSnowflake;
+      break;
     case 'Tornado':
-      return <FontAwesomeIcon icon={faWind} />;
+      symbol = faWind;
+      break;
     case 'Clear':
-      return <FontAwesomeIcon icon={faSun} />;
+      symbol = faSun;
+      break;
     case 'Clouds':
-      return <FontAwesomeIcon icon={faCloud} />;
+      symbol = faCloud;
+      break;
     default:
-      return <FontAwesomeIcon icon={faSun} />;
+      symbol = faSun;
+      break;
   }
-};
 
-const Description = (props) => {
-  if (props.description) {
-    return <h1>{props.description.toUpperCase()}</h1>;
-  } else {
-    return <h1>{'WEATHER'}</h1>;
-  }
-};
-
-const Temp = (props) => {
-  if (props.temp) {
-    return <h1>{`${Math.round(props.temp)}\xB0`}</h1>;
-  } else {
-    return <h1>{'0\xB0'}</h1>;
-  }
-};
-
-const City = (props) => {
-  if (props.city) {
-    return <h1>{props.city.toUpperCase()}</h1>;
-  } else {
-    return <h1>{'LOCATION'}</h1>;
-  }
-};
-
-const Display = (props) => {
   return (
-    <div id="display">
-      <div id="city">
-        <City city={props.city} />
-      </div>
-      <div id="weather">
-        <Description description={props.description} />
-      </div>
-      <div id="symbol">
-        <Symbol main={props.main} />
-      </div>
-      <div id="temp">
-        <Temp temp={props.temp} />
-      </div>
-      <div id="date">
-        <Day />
-      </div>
+    <div id="symbol">
+      <FontAwesomeIcon icon={symbol} />
     </div>
   );
+};
+
+const Description = ({ description }) => {
+  return (
+    <div id="weather">
+      <h1>{description.toUpperCase()}</h1>
+    </div>
+  );
+};
+
+const Temp = ({ temp }) => {
+  return (
+    <div id="temp">
+      <h1>{`${Math.round(temp)}\xB0`}</h1>
+    </div>
+  );
+};
+
+const City = ({ city }) => {
+  return (
+    <div id="city">
+      <h1>{city.toUpperCase()}</h1>
+    </div>
+  );
+};
+
+const Display = ({ city, description, main, temp }) => {
+  if (city) {
+    return (
+      <div id="display">
+        <City city={city} />
+        <Description description={description} />
+        <Symbol main={main} />
+        <Temp temp={temp} />
+        <Day />
+      </div>
+    );
+  } else {
+    return (
+      <div id="display">
+        <City city={'location'} />
+        <Description description={'weather'} />
+        <Symbol main={'Clear'} />
+        <Temp temp={0} />
+        <Day />
+      </div>
+    );
+  }
 };
 
 export default Display;

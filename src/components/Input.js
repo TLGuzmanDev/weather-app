@@ -4,13 +4,8 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const Input = ({ onSubmit }) => {
   return (
-    <form id="form" action="#" onSubmit={onSubmit}>
-      <input
-        type="text"
-        id="location-input"
-        name="location-input"
-        placeholder="LOCATION..."
-      ></input>
+    <form id="form" onSubmit={onSubmit}>
+      <input type="text" name="locationInput" placeholder="LOCATION..."></input>
       <button type="submit">
         <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
       </button>
